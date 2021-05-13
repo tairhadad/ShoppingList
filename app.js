@@ -5,6 +5,7 @@ const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
 const app = express()
 const _ = require('lodash')
+const { DATABASE_PASSWORD } = require('./userDB')
 
 const items = []
 
@@ -13,7 +14,9 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use(express.static('public'))
 
 mongoose.connect(
-  'mongodb+srv://admin-hadad:Taihad0416@cluster0.toyds.mongodb.net/blogDB',
+  'mongodb+srv://admin-hadad:' +
+    DATABASE_PASSWORD +
+    '@cluster0.toyds.mongodb.net/blogDB?authSource=admin',
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,
